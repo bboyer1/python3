@@ -1,20 +1,12 @@
-#!/usr/bin/env python
+#!/usr/local/bin/python3
 #Boyer
 
-#Description: To mess with switches without port security
+#Description: To use against switches without port security
 #Purpose: To gather information about the network
 
 ######DRAFT######
 
 
-import os
-import uuid
+import netifaces
 
-print 'mac_address'
-
-mac_address = hex(uuid.getnode())[2:-1]
-
-#mac_address = mac_address
-
-#mac_address = mac_address['O']
-print mac_address
+print(netifaces.ifaddresses('en0'))
