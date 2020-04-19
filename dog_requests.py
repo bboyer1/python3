@@ -27,7 +27,35 @@ def dog_pictures(volume):
 		img_list.append(i)
 	return img_list
 
-dog_pictures(50)
 
-with concurrent.futures.ThreadPoolExecutor() as executor:
-	executor.submit(download_img, img_list)
+def main():
+	
+	parser = argparse.ArgumentParser(description='The Dog pic script')
+
+	parser.add_argument(
+		'-n',
+		'--num',
+		dest='num',
+		type=int,
+		default=1,
+		help='Number of dog pics'
+	)
+
+	parser.add_argument(
+		'-t',
+		'--threads',
+		dest='threads',
+		type=int,
+		required=True,
+		help="Number of threads to run"
+	)
+	args = parser.parse_args()
+
+	dog_pictures(args.num)
+
+	with concurrent.futures.ThreadPoolExecutor(max_workers=args.threads) as executor:
+		executor.submit(download_img, img_list)
+
+
+if __name__ == "__main__":
+	main()
