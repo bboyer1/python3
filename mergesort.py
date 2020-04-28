@@ -4,23 +4,23 @@ def create_array(size=100, max=1000):
     from random import randint
     return [randint(0,max) for i in range(size)]
 
-def merge(a, b):
-    c = []
-    a_idx,b_idx= 0,0
+def merge(a_list, b_list):
+    myList = []
+    left_index, right_index= 0, 0
 
-    while a_idx<len(a) and b_idx<len(b):
-        if a[a_idx]<b[b_idx]:
-            c.append(a[a_idx])
-            a_idx+=1
+    while left_index<len(a_list) and right_index<len(b_list):
+        if a_list[left_index]<b_list[right_index]:
+            myList.append(a_list[left_index])
+            left_index+=1
         else:
-            c.append(b[b_idx])
-            b_idx+=1
+            myList.append(b_list[right_index])
+            right_index+=1
 
-    if a_idx==len(a):
-        c.extend(b[b_idx:])
+    if left_index==len(a):
+        myList.extend(b_list[right_index:])
     else:
-        c.extend(a[a_idx:])
-    return c
+        myList.extend(a_list[left_index:])
+    return myList
 
 def merge_sort(a):
     if len(a)<=1:
