@@ -7,7 +7,7 @@ class Dog():
         self.dog_type = dog_type
 
     def create_url(self):
-        self.url = 'https://dog.ceo/api/breeds/{dog_type}/images/random'
+        self.url = 'https://dog.ceo/api/breeds/{self.dog_type}/images/random'
 
     def get_dog(self):
         return requests.get(self.url)
